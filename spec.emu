@@ -1,0 +1,27 @@
+<!doctype html>
+<meta charset="utf8">
+<link rel="stylesheet" href="./spec.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+<script src="./spec.js"></script>
+<pre class="metadata">
+title: Promise.try
+stage: 0
+contributors: Jordan Harband
+</pre>
+
+<emu-clause id="sec-promise.try">
+	<h1>Promise.try ( _callbackfn_ )</h1>
+	<p>When the `try` method is called with argument _callbackfn_, the following steps are taken:</p>
+	<emu-alg>
+		1. Let _C_ be the *this* value.
+		1. If Type(_C_) is not Object, throw a *TypeError* exception.
+		1. Let _promiseCapability_ be ? NewPromiseCapability(_C_).
+		1. Let _status_ be Call(_callbackfn_, *undefined*, &laquo; &raquo;).
+		1. Assert: _status_ is a completion record.
+		1. If _status_ is an abrupt completion, then
+			1. Perform ? Call(_promiseCapability_.[[Reject]], *undefined*, « _status_ »).
+		1. Else
+			1. Perform ? Call(_promiseCapability_.[[Resolve]], *undefined*, « _status_.[[Value]] »).
+		1. Return _promiseCapability_.[[Promise]].
+	</emu-alg>
+</emu-clause>
