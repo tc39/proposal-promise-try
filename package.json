@@ -30,7 +30,7 @@
 	"homepage": "https://github.com/ljharb/proposal-promise-try#readme",
 	"dependencies": {},
 	"devDependencies": {
-		"ecmarkup": "^3.2.6",
-		"js-beautify": "^1.6.3"
+		"ecmarkup": "^3.5.1",
+		"js-beautify": "^1.6.4"
 	}
 }
