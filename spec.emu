@@ -19,9 +19,9 @@ contributors: Jordan Harband
 		1. Let _status_ be Call(_callbackfn_, *undefined*, &laquo; &raquo;).
 		1. Assert: _status_ is a completion record.
 		1. If _status_ is an abrupt completion, then
-			1. Perform ? Call(_promiseCapability_.[[Reject]], *undefined*, « _status_ »).
+			1. Perform ! Call(_promiseCapability_.[[Reject]], *undefined*, « _status_ »).
 		1. Else
-			1. Perform ? Call(_promiseCapability_.[[Resolve]], *undefined*, « _status_.[[Value]] »).
+			1. Perform ! Call(_promiseCapability_.[[Resolve]], *undefined*, « _status_.[[Value]] »).
 		1. Return _promiseCapability_.[[Promise]].
 	</emu-alg>
 </emu-clause>

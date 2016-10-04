@@ -44,7 +44,7 @@
 			</ol>
 		</div>
 	</div>
-	<h1 class="version">Stage 0 Draft / September 25, 2016</h1>
+	<h1 class="version">Stage 0 Draft / October 4, 2016</h1>
 	<h1 class="title">Promise.try</h1>
 
 	<emu-clause id="sec-promise.try">
@@ -67,14 +67,14 @@
 				<li>If <var>status</var> is an
 					<emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.github.io/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref>, then
 					<ol>
-						<li>Perform ?
+						<li>Perform !
 							<emu-xref aoid="Call"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>promiseCapability</var>.[[Reject]],
 							<emu-val>undefined</emu-val>, « <var>status</var> »).</li>
 					</ol>
 				</li>
 				<li>Else
 					<ol>
-						<li>Perform ?
+						<li>Perform !
 							<emu-xref aoid="Call"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>promiseCapability</var>.[[Resolve]],
 							<emu-val>undefined</emu-val>, « <var>status</var>.[[Value]] »).</li>
 					</ol>
