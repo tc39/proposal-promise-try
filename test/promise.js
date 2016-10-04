@@ -503,6 +503,28 @@ module.exports = class Promise {
 		const resultCapability = NewPromiseCapability(C);
 		return PerformPromiseThen(promise, onFulfilled, onRejected, resultCapability);
 	}
+
+	static try(callbackfn) {
+		const C = this;
+		if (Type(C) !== 'Object') {
+			throw new TypeError('Promise.try must be called on an object');
+		}
+
+		const promiseCapability = NewPromiseCapability(C);
+		let status;
+		try {
+			status = NormalCompletion(Call(callbackfn, undefined, []));
+		} catch (e) {
+			status = AbruptCompletion(e);
+		}
+
+		if (IsAbruptCompletion(status)) {
+			Call(get_slot(promiseCapability, '[[Reject]]'), undefined, [get_slot(status, '[[Value]]')]);
+		} else {
+			Call(get_slot(promiseCapability, '[[Resolve]]'), undefined, [get_slot(status, '[[Value]]')]);
+		}
+		return get_slot(promiseCapability, '[[Promise]]');
+	}
 }
 
 function createPromiseReactionRecord(capability, type, handler) {
