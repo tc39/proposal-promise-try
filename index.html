@@ -33,10 +33,16 @@
 
 <body>
 	<div id="menu-toggle">☰</div>
+	<div id="menu-spacer"></div>
 	<div id="menu">
 		<div id="menu-search"><input type="text" id="menu-search-box" placeholder="Search...">
 			<div id="menu-search-results" class="inactive"></div>
 		</div>
+		<div id="menu-pins">
+			<div class="menu-pane-header">Pinned Clauses</div>
+			<ul id="menu-pins-list"></ul>
+		</div>
+		<div class="menu-pane-header">Table of Contents</div>
 		<div id="menu-toc">
 			<ol class="toc">
 				<li><span class="item-toggle-none"></span><a href="#sec-promise.try" title="Promise.try ( callbackfn )"><span class="secnum">1</span> Promise.try ( <var>callbackfn</var> )</a></li>
@@ -44,65 +50,67 @@
 			</ol>
 		</div>
 	</div>
-	<h1 class="version">Stage 1 Draft / November 29, 2016</h1>
-	<h1 class="title">Promise.try</h1>
+	<div id="spec-container">
+		<h1 class="version">Stage 1 Draft / November 29, 2016</h1>
+		<h1 class="title">Promise.try</h1>
 
-	<emu-clause id="sec-promise.try">
-		<h1><span class="secnum">1</span>Promise.try ( <var>callbackfn</var> )<span class="utils"><span class="anchor"><a href="#sec-promise.try">#</a></span></span>
-		</h1>
-		<p>When the <code>try</code> method is called with argument <var>callbackfn</var>, the following steps are taken:</p>
-		<emu-alg>
+		<emu-clause id="sec-promise.try">
+			<h1><span class="secnum">1</span>Promise.try ( <var>callbackfn</var> )<span class="utils"><span class="anchor"><a href="#sec-promise.try">link</a></span><span class="anchor"><a href="#" class="utils-pin">pin</a></span></span>
+			</h1>
+			<p>When the <code>try</code> method is called with argument <var>callbackfn</var>, the following steps are taken:</p>
+			<emu-alg>
+				<ol>
+					<li>Let <var>C</var> be the
+						<emu-val>this</emu-val> value.</li>
+					<li>If
+						<emu-xref aoid="Type"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>C</var>) is not Object, throw a
+						<emu-val>TypeError</emu-val> exception.</li>
+					<li>Let <var>promiseCapability</var> be ?
+						<emu-xref aoid="NewPromiseCapability"><a href="https://tc39.github.io/ecma262/#sec-newpromisecapability">NewPromiseCapability</a></emu-xref>(<var>C</var>).</li>
+					<li>Let <var>status</var> be
+						<emu-xref aoid="Call"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>callbackfn</var>,
+						<emu-val>undefined</emu-val>, « »).</li>
+					<li>Assert: <var>status</var> is a completion record.</li>
+					<li>If <var>status</var> is an
+						<emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.github.io/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref>, then
+						<ol>
+							<li>Perform !
+								<emu-xref aoid="Call"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>promiseCapability</var>.[[Reject]],
+								<emu-val>undefined</emu-val>, « <var>status</var> »).</li>
+						</ol>
+					</li>
+					<li>Else
+						<ol>
+							<li>Perform !
+								<emu-xref aoid="Call"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>promiseCapability</var>.[[Resolve]],
+								<emu-val>undefined</emu-val>, « <var>status</var>.[[Value]] »).</li>
+						</ol>
+					</li>
+					<li>Return <var>promiseCapability</var>.[[Promise]].
+					</li>
+				</ol>
+			</emu-alg>
+		</emu-clause>
+		<emu-annex id="sec-copyright-and-software-license">
+			<h1><span class="secnum">A</span>Copyright &amp; Software License<span class="utils"><span class="anchor"><a href="#sec-copyright-and-software-license">link</a></span><span class="anchor"><a href="#" class="utils-pin">pin</a></span></span>
+			</h1>
+
+			<h2>Copyright Notice</h2>
+			<p>© 2016 Jordan Harband</p>
+
+			<h2>Software License</h2>
+			<p>All Software contained in this document ("Software") is protected by copyright and is being made available under the "BSD License", included below. This Software may be subject to third party rights (rights from parties other than Ecma International), including patent rights, and no licenses under such third party rights are granted under this license even if the third party concerned is a member of Ecma International. SEE THE ECMA CODE OF CONDUCT IN PATENT MATTERS AVAILABLE AT http://www.ecma-international.org/memento/codeofconduct.htm FOR INFORMATION REGARDING THE LICENSING OF PATENT CLAIMS THAT ARE REQUIRED TO IMPLEMENT ECMA INTERNATIONAL STANDARDS.</p>
+
+			<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
+
 			<ol>
-				<li>Let <var>C</var> be the
-					<emu-val>this</emu-val> value.</li>
-				<li>If
-					<emu-xref aoid="Type"><a href="https://tc39.github.io/ecma262/#sec-ecmascript-data-types-and-values">Type</a></emu-xref>(<var>C</var>) is not Object, throw a
-					<emu-val>TypeError</emu-val> exception.</li>
-				<li>Let <var>promiseCapability</var> be ?
-					<emu-xref aoid="NewPromiseCapability"><a href="https://tc39.github.io/ecma262/#sec-newpromisecapability">NewPromiseCapability</a></emu-xref>(<var>C</var>).</li>
-				<li>Let <var>status</var> be
-					<emu-xref aoid="Call"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>callbackfn</var>,
-					<emu-val>undefined</emu-val>, « »).</li>
-				<li>Assert: <var>status</var> is a completion record.</li>
-				<li>If <var>status</var> is an
-					<emu-xref href="#sec-completion-record-specification-type"><a href="https://tc39.github.io/ecma262/#sec-completion-record-specification-type">abrupt completion</a></emu-xref>, then
-					<ol>
-						<li>Perform !
-							<emu-xref aoid="Call"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>promiseCapability</var>.[[Reject]],
-							<emu-val>undefined</emu-val>, « <var>status</var> »).</li>
-					</ol>
-				</li>
-				<li>Else
-					<ol>
-						<li>Perform !
-							<emu-xref aoid="Call"><a href="https://tc39.github.io/ecma262/#sec-call">Call</a></emu-xref>(<var>promiseCapability</var>.[[Resolve]],
-							<emu-val>undefined</emu-val>, « <var>status</var>.[[Value]] »).</li>
-					</ol>
-				</li>
-				<li>Return <var>promiseCapability</var>.[[Promise]].
-				</li>
+				<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
+				<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
+				<li>Neither the name of the authors nor Ecma International may be used to endorse or promote products derived from this software without specific prior written permission.</li>
 			</ol>
-		</emu-alg>
-	</emu-clause>
-	<emu-annex id="sec-copyright-and-software-license">
-		<h1><span class="secnum">A</span>Copyright &amp; Software License<span class="utils"><span class="anchor"><a href="#sec-copyright-and-software-license">#</a></span></span>
-		</h1>
 
-		<h2>Copyright Notice</h2>
-		<p>© 2016 Jordan Harband</p>
+			<p>THIS SOFTWARE IS PROVIDED BY THE ECMA INTERNATIONAL "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL ECMA INTERNATIONAL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
 
-		<h2>Software License</h2>
-		<p>All Software contained in this document ("Software") is protected by copyright and is being made available under the "BSD License", included below. This Software may be subject to third party rights (rights from parties other than Ecma International), including patent rights, and no licenses under such third party rights are granted under this license even if the third party concerned is a member of Ecma International. SEE THE ECMA CODE OF CONDUCT IN PATENT MATTERS AVAILABLE AT http://www.ecma-international.org/memento/codeofconduct.htm FOR INFORMATION REGARDING THE LICENSING OF PATENT CLAIMS THAT ARE REQUIRED TO IMPLEMENT ECMA INTERNATIONAL STANDARDS.</p>
-
-		<p>Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:</p>
-
-		<ol>
-			<li>Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.</li>
-			<li>Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.</li>
-			<li>Neither the name of the authors nor Ecma International may be used to endorse or promote products derived from this software without specific prior written permission.</li>
-		</ol>
-
-		<p>THIS SOFTWARE IS PROVIDED BY THE ECMA INTERNATIONAL "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL ECMA INTERNATIONAL BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</p>
-
-	</emu-annex>
+		</emu-annex>
+	</div>
 </body>
