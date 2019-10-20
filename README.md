@@ -31,3 +31,7 @@ The most common name is `try`, which has a clean parallel with a syntactic `try`
 
 ## Spec
 You can view the spec in [markdown format](spec.md) or rendered as [HTML](https://tc39.github.io/proposal-promise-try/).
+
+## Polyfill
+
+A polyfill is available in the [core-js](https://github.com/zloirock/core-js) library. You can find it in the [ECMAScript proposals section](https://github.com/zloirock/core-js#promisetry).
