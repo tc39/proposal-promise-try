@@ -31,4 +31,4 @@ Further reading
 The most common name is `try`, which has a clean parallel with a syntactic `try` block. A common alternative name is `attempt`, but this has been primarily for ES3 compatibility, and is not necessary here.
 
 ## Spec
-You can view the spec in [markdown format](spec.md) or rendered as [HTML](https://tc39.github.io/proposal-promise-try/).
+You can view the spec rendered as [HTML](https://tc39.github.io/proposal-promise-try/).
