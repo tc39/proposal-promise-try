@@ -20,4 +20,7 @@ contributors: Jordan Harband
 			1. Perform ? Call(_promiseCapability_.[[Resolve]], *undefined*, « _status_.[[Value]] »).
 		1. Return _promiseCapability_.[[Promise]].
 	</emu-alg>
+	<emu-note>
+		<p>This function expects its *this* value to be a constructor function that supports the parameter conventions of the Promise constructor.</p>
+	</emu-note>
 </emu-clause>
