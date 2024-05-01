@@ -21,6 +21,7 @@ Userland implementations
  - Q: [`Q.try`/`Promise.prototype.fcall`](https://github.com/kriskowal/q/wiki/API-Reference#promisefcallargs) - `Q.try` takes one function, calls it with no args. `Promise#fcall` is deprecated, but takes a list of arguments, and invokes the given function with that list of arguments.
  - when: [`when.try`/`when.attempt`](https://github.com/cujojs/when/blob/master/docs/api.md#whentry) - takes one function, and an optional list of arguments, and invokes the given function with that list of arguments.
  - ES6: [`es6-promise-try`](https://www.npmjs.com/package/es6-promise-try) - takes one function, calls it with no args. Functionally equivalent to Bluebird's `Promise.try`, but a stand-alone implementation using ES6 Promises.
+ - [dojo/when](https://dojotoolkit.org/reference-guide/1.10/dojo/when.html)
 
 Further reading
  - http://cryto.net/~joepie91/blog/2016/05/11/what-is-promise-try-and-why-does-it-matter/
