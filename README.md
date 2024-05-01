@@ -32,3 +32,7 @@ The most common name is `try`, which has a clean parallel with a syntactic `try`
 
 ## Spec
 You can view the spec rendered as [HTML](https://tc39.github.io/proposal-promise-try/).
+
+## Polyfills
+ - [core-js](https://www.npmjs.com/package/core-js) v3.37+ ([docs](https://github.com/zloirock/core-js#promisetry))
+ - es-shims: [promise.try](https://www.npmjs.com/package/promise.try)
