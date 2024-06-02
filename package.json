@@ -34,7 +34,7 @@
 	},
 	"homepage": "https://github.com/ljharb/proposal-promise-try#readme",
 	"devDependencies": {
-		"@tc39/ecma262-biblio": "^2.1.2722",
+		"@tc39/ecma262-biblio": "^2.1.2732",
 		"ecmarkup": "^18.3.1",
 		"especially": "^2.0.1",
 		"mocha": "^3.2.0",
