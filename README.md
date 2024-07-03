@@ -7,7 +7,7 @@ This proposal is currently [stage 2.7](https://github.com/tc39/proposals/) of th
 
 ## Rationale
 
-A common use case that I, and many others, have, is that I have a function, `f`. This function may be async, and return a Promise, or it may not - I don’t wish to have to know. However, I'd like to wrap it in a Promise so that if it _is_ async, or if it throws, I can lean on Promise semantics and `.catch` to handle it.
+A common use case that I, and many others, have, is that I have a function, `f`. This function may be async, and return a Promise, or it may not - I don’t wish to have to know. However, I'd like to wrap it in a Promise so that if it _is not_ async, or if it throws, I can lean on Promise semantics and `.catch` to handle it.
 
 The typical “easy to remember” way this is achieved in JS Promises is with `Promise.resolve().then(f)`. This works great! It catches any exceptions thrown, and it Promise-wraps any thenable or value returned from the function. However, `f` is needlessly run asynchronously, on a future tick.
 
