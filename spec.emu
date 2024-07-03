@@ -2,7 +2,7 @@
 <meta charset="utf8">
 <pre class="metadata">
 title: Promise.try
-stage: 2.7
+stage: 3
 contributors: Jordan Harband
 </pre>
 
