@@ -3,7 +3,7 @@ ECMAScript Proposal, specs, and reference implementation for `Promise.try`
 
 Spec drafted by [@ljharb](https://github.com/ljharb).
 
-This proposal is currently [stage 3](https://github.com/tc39/proposals/) of the [process](https://tc39.github.io/process-document/).
+This proposal is currently [stage 4](https://github.com/tc39/proposals/) of the [process](https://tc39.github.io/process-document/).
 
 ## Rationale
 
